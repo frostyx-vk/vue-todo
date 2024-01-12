@@ -5,9 +5,9 @@
         <div class="container">
           <h1>{{ title }}</h1>
 
-          <message v-if="message" :message="message"/>
+          <message v-if="message" :message="message" />
           <newNote :note="note" @addNote="addNote" />
-          <notes :notes="notes" />
+          <notes :notes="notes" @remove="removeNote" />
 
         </div>
       </section>
@@ -70,14 +70,17 @@ export default {
       this.massage = null;
       this.note.title = '';
       this.note.descr = '';
-    }
+    },
+    removeNote(index) {
+      this.notes.splice(index, 1)
+    },
   }
 }
 </script>
 
 <style>
-  .container h1 {
-    text-align: center;
-    padding-bottom: 30px;
-  }
+.container h1 {
+  text-align: center;
+  padding-bottom: 30px;
+}
 </style>

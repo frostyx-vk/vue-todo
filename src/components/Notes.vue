@@ -3,6 +3,7 @@
         <div class="note" v-for="(note, index) in notes" :key="index">
             <div class="note-header">
                 <p>{{ note.title }}</p>
+                <p style="cursor: pointer;" @click="removeNote(index)">x</p>
             </div>
             <div class="note-body">
                 <p>{{ note.descr }}</p>
@@ -20,6 +21,12 @@ export default {
             required: true,
         }
     },
+    methods: {
+        removeNote (index) {
+            console.log(`index - ${index}`);
+            this.$emit('remove', index)
+        }
+    }
 }
 </script>
 
@@ -39,6 +46,9 @@ export default {
     border-radius: 8px;
 }
 .note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     p {
         font-size: 22px;
         color: #402caf;
