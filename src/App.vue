@@ -7,11 +7,7 @@
 
           <message v-if="message" :message="message"/>
 
-          <div class="new-note">
-            <input type="text" v-model="note.title">
-            <textarea v-model="note.descr"></textarea>
-            <button @click="addNote">Новая запись</button>
-          </div>
+          <newNote :note="note" @addNote="addNote" />
 
           <div class="notes">
             <div class="note" v-for="(note, index) in notes" :key="index">
@@ -32,9 +28,11 @@
 
 <script>
 import message from '@/components/Message.vue'
+import newNote from '@/components/NewNote.vue'
 export default {
   components: {
     message,
+    newNote,
   },
   data() {
     return {
@@ -85,3 +83,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .container h1 {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+</style>
